@@ -51,9 +51,10 @@ jobs:
           path: dist/resource_web
       - name: Install gh-pages
         run: npm install -g gh-pages
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-artifact@v2
+      - name: Deploy
+        if: success()
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: public/angular_CI-CD
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/resource_web
+          enable_jekyll: true
