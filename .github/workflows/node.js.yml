@@ -54,6 +54,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DINESH_NALLAIYA }}
           BRANCH: gh-pages # Specify the branch where GitHub Pages are hosted
           FOLDER: dist/resource_web # Specify the folder containing your built files
