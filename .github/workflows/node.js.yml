@@ -56,7 +56,7 @@ jobs:
       
       - name: Configure Git
         run: |
-          git config --global user.email "dinesh.nallaiya@gramenerit.com"
+          git config --global user.email "dinesh.nallaiya@cannyfore.com"
           git config --global user.name "dineshGramenerit"
           git remote add origin https://github.com/dineshGramenerit/angular_CI-CD.git
 
