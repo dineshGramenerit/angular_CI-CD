@@ -15,15 +15,19 @@ jobs:
     
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Install and build
         working-directory: angular_CI-CD
-        run: npm install && npm run gh-build && cp dist/resource_web/index.html
+        run: |
+          cd angular_CI-CD
+          npm install
+          npm run gh-build
+          cp dist/resource_web/index.html .
+
       
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: angular_CI-CD/dist/resource_web # The folder the action should deploy.        
-
+          folder: . # The folder the action should deploy.  
