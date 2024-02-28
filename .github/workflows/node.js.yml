@@ -34,10 +34,10 @@ jobs:
     - run: npm run build --prod
     # sotre the artifact
     - name: Archive Production Artifact
-      uses: actions/upload-artifact@main
+      uses: actions/upload-artifact@v3
       with:
           name: public
-          path: ./public
+          path: dist/resource_web
   deploy:
     environment:
       name: github-pages
