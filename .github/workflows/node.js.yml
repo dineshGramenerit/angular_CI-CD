@@ -37,7 +37,9 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: public
-          path: dist/resource_web
+          path: |
+            . 
+            !venv/
   deploy:
     environment:
       name: github-pages
@@ -48,7 +50,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: public
-          path: dist/resource_web
+          path: .
   
       - name: Deploy to GitHub Pages
         id: deployment
