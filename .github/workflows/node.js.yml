@@ -51,9 +51,9 @@ jobs:
           path: dist/resource_web
       - name: Install gh-pages
         run: npm install -g gh-pages
-      - name: Deploy
-        if: success()
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy to GitHub Pages
+        uses: Jpeaceiris/actions-gh-pages@v3
         with:
-          publish_dir: dist/resource_web
-          enable_jekyll: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # Specify the branch where GitHub Pages are hosted
+          FOLDER: dist/resource_web # Specify the folder containing your built files
