@@ -54,4 +54,4 @@ jobs:
         run: npm install -g gh-pages
 
       - name: Deploy to GitHub Pages
-        run: gh-pages -d dist/resource_web --no-silent
+        run: gh-pages -d dist/resource_web --silent
