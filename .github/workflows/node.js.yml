@@ -31,8 +31,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build --prod
-    # sotre the artifact
+    - run: npm run build --prod --sourceMap=false --base-href angular_CI-CD"
     - name: Archive Production Artifact
       uses: actions/upload-artifact@v3
       with:
@@ -52,13 +51,9 @@ jobs:
           path: dist/resource_web
       - name: Install gh-pages
         run: npm install -g gh-pages
-
-      
-      - name: Configure Git
-        run: |
-          git config --global user.email "dinesh.nallaiya@cannyfore.com"
-          git config --global user.name "dineshGramenerit"
-          git remote add origin https://github.com/dineshGramenerit/angular_CI-CD.git
-
       - name: Deploy to GitHub Pages
-        run: gh-pages -d dist/resource_web
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: public/angular_CI-CD
