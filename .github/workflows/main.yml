@@ -33,9 +33,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: public
-          path: dist
+          path: angular_CI-CD/dist/resource_web
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages
-          folder: dist
+          folder: angular_CI-CD/dist/resource_web
