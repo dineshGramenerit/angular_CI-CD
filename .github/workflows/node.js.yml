@@ -1,59 +1,29 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: Github Pages Deploy
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    branches:
+      - "main"
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --prod --sourceMap=false --base-href="angular_CI-CD"
-    - name: Archive Production Artifact
-      uses: actions/upload-artifact@v3
-      with:
-          name: public
-          path: dist/resource_web
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v2
+      - name: Install and build
+        working-directory: angular_CI-CD
+        run: npm install && npm run gh-build && cp dist/resource_web/index.html
+      
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
-          name: public
-          path: dist/resource_web
-      - name: Install gh-pages
-        run: npm install -g gh-pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages # Specify the branch where GitHub Pages are hosted
-          FOLDER: dist/resource_web # Specify the folder containing your built files
+          branch: gh-pages # The branch the action should deploy to.
+          folder: angular_CI-CD/dist/resource_web # The folder the action should deploy.        
+
