@@ -52,7 +52,7 @@ jobs:
       - name: Install gh-pages
         run: npm install -g gh-pages
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: actions/deploy-artifact@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
