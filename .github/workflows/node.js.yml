@@ -37,10 +37,9 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: public
-          path: |
-            . 
-            !venv/
+          path: dist/resource_web
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -50,7 +49,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: public
-          path: .
+          path: dist/resource_web
   
       - name: Deploy to GitHub Pages
         id: deployment
