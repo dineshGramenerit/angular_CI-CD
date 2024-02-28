@@ -48,3 +48,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Set the directory to deploy from
+          source_dir: dist/resource_web
