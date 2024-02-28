@@ -50,7 +50,9 @@ jobs:
         with:
           name: public
           path: dist/resource_web
-  
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          # Specify the directory containing the downloaded artifact
+          source_dir: dist/resource_web
