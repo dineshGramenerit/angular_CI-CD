@@ -27,11 +27,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build --if-present
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v1
+    - run: npm run build --prod
+    # sotre the artifact
+    - name: Archive Production Artifact
+      uses: actions/upload-artifact@master
       with:
-        path: ./public
+          name: public
+          path: ./public
   deploy:
     environment:
       name: github-pages
