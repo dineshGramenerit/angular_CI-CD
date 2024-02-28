@@ -34,8 +34,3 @@ jobs:
         with:
           name: public
           path: dist/resource_web
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.1
-        with:
-          branch: gh-pages
-          folder: dist/resource_web
