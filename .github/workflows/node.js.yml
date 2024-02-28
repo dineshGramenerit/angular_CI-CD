@@ -23,9 +23,6 @@ jobs:
           cd angular_CI-CD
           npm install
           npm run gh-build
-          cp dist/resource_web/index.html .
-
-      
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
