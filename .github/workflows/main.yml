@@ -40,7 +40,5 @@ jobs:
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.1
       with:
-        branch: gh-pages # The branch the action should deploy to.
-        name: public
-        path: dist/resource_web
+          branch: gh-pages
  
