@@ -21,5 +21,8 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_SCANNER_OPTS: "-Xmx512m"  # Optionally set scanner options
         with:
-          arguments: -X  # Enable full debug logging
+          arguments: "-Dsonar.projectBaseDir=/usr/src"  # Additional arguments for SonarScanner
+          command: >
+            sh -c "sleep 60 && sonar-scanner"
