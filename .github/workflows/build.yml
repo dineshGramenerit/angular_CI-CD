@@ -1,8 +1,10 @@
 name: Build
+
 on:
   push:
     branches:
       - main
+
 jobs:
   build:
     name: Build
@@ -14,11 +16,12 @@ jobs:
         with:
           fetch-depth: 0  # Disable shallow clones for better analysis relevancy
 
+      - name: Wait for SonarQube server to start
+        run: sleep 60  # Adjust sleep duration as needed
+
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONAR_SCANNER_OPTS: "-Xmx512m"  # Optionally set scanner options
-    
-     
